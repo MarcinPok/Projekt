@@ -30,7 +30,7 @@ DevicesFactory::~DevicesFactory(void)
 	}
 	DevicesList.clear();
 
-	cout << "Fabryka zbankrutowala" << endl;
+	cout << "~Factory"<< endl;
 }
 
 Device * DevicesFactory::create(string type, ConnectedClient* client)
