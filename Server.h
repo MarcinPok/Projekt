@@ -4,7 +4,7 @@
 //#include "DevicesFactory.h"
 
 class ConnectedClient;
-class DevicesFactory;
+//class DevicesFactory;
 
 
 class TCPServer
