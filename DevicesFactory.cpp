@@ -6,9 +6,10 @@
 
 DevicesFactory::DevicesFactory(void)
 {
-	this->RegisterDevice("Termometr", new TemperatureSensor());
-	this->RegisterDevice("Device", new Device());
+	this->RegisterDevice(" 'Termometr", new TemperatureSensor());
+	//this->RegisterDevice("Device", new Device());
 	cout << "utworzono skurwiala fabryke" << endl;
+	
 }
 
 

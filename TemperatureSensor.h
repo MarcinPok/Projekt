@@ -9,12 +9,8 @@ class TemperatureSensor : public Sensor
 public:
 	TemperatureSensor();
 	virtual ~TemperatureSensor();
-	string GetMeasure();
-	//TemperatureSensor* create(string type, ConnectedClient* client);
-	TemperatureSensor* create(string type, ConnectedClient* client)
-	{
-		return new TemperatureSensor();
-	}
+	TemperatureSensor* create(string type, ConnectedClient* client);
+
 private:
 	long long measure;
 	int ID;

@@ -11,7 +11,7 @@ public:
 	Sensor();
 	virtual ~Sensor();
     //virtual string GetMeasure();
-	Sensor* create(string type, ConnectedClient* client)
+	virtual Sensor* create(string type, ConnectedClient* client)
 	{
 		return new Sensor();
 	}

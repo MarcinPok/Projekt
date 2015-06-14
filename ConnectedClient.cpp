@@ -29,7 +29,7 @@ void ConnectedClient::disconnect()
 
 string ConnectedClient::getline(bool asterisks)
 {
-    string line("");
+    string line;
     char c;
     size_t rxbytes;
     do {
@@ -44,39 +44,22 @@ string ConnectedClient::getline(bool asterisks)
     return line;
 }
 
+
+
 void* ConnectedClient::run(void* arg)
 {
     ConnectedClient * client = (ConnectedClient*)arg;
 
-    client->putline("User: ");
-    client->user = client->getline(false);
-    cout << client->user << endl;
+    client->putline("Identify yourself");
+	string type = client->getline(false);
+	client->server->system->factory->create(type,client);
 
 
-    string c("");
+
+   // string c("");
     do 
 	{
-        client->putline(Common::EOLN + "Cmd: ");
-		try {
-			c = client->getline();
-		} 
-		catch(exception e)
-		{
-			client->putline(Common::EOLN + e.what());
-			break;
-		}
-
-        cout << client->user << ": " << c << endl;
-
-		/*
-		try 
-		{
-			client->server->cmdEngine->exec(client, c);
-		} 
-		catch(exception e)
-		{
-			client->putline(Common::EOLN + e.what());
-		}*/
+      Common::sleep(1); 
     } while(client->is_running());
 
     client->disconnect();

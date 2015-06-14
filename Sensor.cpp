@@ -3,6 +3,7 @@
 
 Sensor::Sensor(void)
 {
+	cout << "Sensor()" << endl;
 }
 
 

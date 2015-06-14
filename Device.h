@@ -8,10 +8,13 @@ class Device
 {
 public:
 	Device();
+	Device(ConnectedClient* client);
 	virtual ~Device(void);
-		Device* create(string type, ConnectedClient* client)
+	virtual Device* create(string type, ConnectedClient* client)
 	{
-		return new Device();
+		return new Device(client);
 	}
+private:
+	ConnectedClient* client;
 };
 

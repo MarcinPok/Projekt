@@ -31,4 +31,5 @@ private:
     pthread_t thread_id;
 	volatile bool _is_running;
     TCPServer* server;
+	void newDevice(ConnectedClient* client);
 };

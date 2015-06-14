@@ -2,15 +2,16 @@
 #include "common.h"
 #include "ConnectedClient.h"
 #include "DevicesFactory.h"
+#include "CentralSystem.h"
 
 class ConnectedClient;
 class DevicesFactory;
-
+class CentralSystem;
 
 class TCPServer
 {
 public:
-    TCPServer();
+    TCPServer(CentralSystem* system);
     virtual ~TCPServer();
     virtual void start(uint16_t port);
     virtual void stop();
@@ -25,6 +26,7 @@ protected:
     virtual void addClient(ConnectedClient * client);
     virtual void removeClient(ConnectedClient * client);    
 	static void* run(void *); 
+	virtual void newDevice(ConnectedClient * client);
 
 private:
     int my_socket;
@@ -32,6 +34,7 @@ private:
     uint16_t port;
     pthread_t thread_id;
     vector<ConnectedClient*> clients;
-	DevicesFactory * factory;
+	CentralSystem* system;
+	
 };
 

@@ -4,16 +4,21 @@
 TemperatureSensor::TemperatureSensor()
 {
 	//this->ID = ID;
-	cout << "utworzyl sie temperaturowy skurwiel o chujowym identyfikatorze:" << endl;
+	cout << "TemperatureSensor()" << endl;
 }
 
 
 TemperatureSensor::~TemperatureSensor()
 {
-	cout << "Termometr sie spierdolil" << endl;
-	//cout << "Termometr sie spierdolil" << endl;
+	cout << "~TemperatureSensor()" << endl;
 }
 
+TemperatureSensor* TemperatureSensor::create(string type, ConnectedClient* client)
+{
+	return new TemperatureSensor();
+}
+
+/*
 string TemperatureSensor::GetMeasure()
 {
 	srand(time(NULL));
@@ -22,5 +27,5 @@ string TemperatureSensor::GetMeasure()
 	//cout << "ID: " << ID << "Temperatura: " << measure << endl;
 	//return to_string(measure);
 	//return "lol";
-}
+}*/
 

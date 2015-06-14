@@ -1,17 +1,19 @@
 #include "Server.h"
-#include "DevicesFactory.h"
 
-TCPServer::TCPServer()
+
+
+TCPServer::TCPServer(CentralSystem* system)
 {
+	this->system = system;
     my_socket = -1;
 	_is_running = false;
-	//factory = new DevicesFactory;
+	
 }
 
 TCPServer::~TCPServer()
 {
 	if(_is_running) stop();
-	//delete factory;
+	
 }
 
 
@@ -71,6 +73,11 @@ bool TCPServer::is_running()
 	return _is_running; 
 }
 
+void TCPServer::newDevice(ConnectedClient* client)
+{
+	system->identifyDevice(client);
+}
+
 void* TCPServer::run(void *arg)
 {
 
@@ -117,6 +124,7 @@ void* TCPServer::run(void *arg)
 			ConnectedClient * newClient;
 			newClient = new ConnectedClient(server, client_socket, remote.sin_addr.s_addr, remote.sin_port);
 			server->addClient(newClient);
+			//server->newDevice(newClient);
 			//server->factory->create("Device",newClient);
             //server->addClient(new ConnectedClient(server, client_socket, remote.sin_addr.s_addr, remote.sin_port));
         }
