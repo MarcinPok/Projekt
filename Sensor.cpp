@@ -10,3 +10,6 @@ Sensor::~Sensor(void)
 {
 }
 
+/*Device* Sensor::create(string type, ConnectedClient* client)
+{
+}*/

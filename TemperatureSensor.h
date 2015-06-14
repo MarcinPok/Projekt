@@ -1,14 +1,17 @@
 #pragma once
-#include "sensor.h"
+#include "Sensor.h"
+
+class ConnectedClient;
+class Sensor;
 
 class TemperatureSensor : public Sensor
 {
 public:
 	TemperatureSensor();
-	//TemperatureSensor(ConnectedClient* client);
 	virtual ~TemperatureSensor();
 	string GetMeasure();
-	TemperatureSensor* create()
+	//TemperatureSensor* create(string type, ConnectedClient* client);
+	TemperatureSensor* create(string type, ConnectedClient* client)
 	{
 		return new TemperatureSensor();
 	}

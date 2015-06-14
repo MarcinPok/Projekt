@@ -1,10 +1,10 @@
 #pragma once
 #include "common.h"
 #include "ConnectedClient.h"
-//#include "DevicesFactory.h"
+#include "DevicesFactory.h"
 
 class ConnectedClient;
-//class DevicesFactory;
+class DevicesFactory;
 
 
 class TCPServer

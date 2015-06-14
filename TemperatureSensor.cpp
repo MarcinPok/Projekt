@@ -23,3 +23,4 @@ string TemperatureSensor::GetMeasure()
 	//return to_string(measure);
 	//return "lol";
 }
+

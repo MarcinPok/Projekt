@@ -1,12 +1,17 @@
 #pragma once
 //#include "Server.h"
-//#include "ConnectedClient.h"
+#include "ConnectedClient.h"
+
+class ConnectedClient;
 
 class Device
 {
 public:
 	Device();
 	virtual ~Device(void);
-	virtual Device* create()=0;
+		Device* create(string type, ConnectedClient* client)
+	{
+		return new Device();
+	}
 };
 
