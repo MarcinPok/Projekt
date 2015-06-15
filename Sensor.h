@@ -9,9 +9,9 @@ class Sensor : public Device
 {
 public:
 	Sensor();
+	Sensor(ConnectedClient* client);
 	virtual ~Sensor();
-    //virtual string GetMeasure();
-	virtual Sensor* create(string type, ConnectedClient* client)
+	virtual Sensor* create(ConnectedClient* client)
 	{
 		return new Sensor();
 	}

@@ -10,11 +10,11 @@ public:
 	Device();
 	Device(ConnectedClient* client);
 	virtual ~Device(void);
-	virtual Device* create(string type, ConnectedClient* client)
+	virtual Device* create(ConnectedClient* client)
 	{
 		return new Device(client);
 	}
-private:
+protected:
 	ConnectedClient* client;
 };
 

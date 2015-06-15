@@ -13,6 +13,8 @@ public:
 	void start();
 	static void* run(void *);
 	bool is_running() {return _is_running;}
+	void newClient(ConnectedClient* client);
+
 	void identifyDevice(ConnectedClient* client); // nowe po³¹czenie wywo³uje metodê identyfikacyjn¹ czujnik
 private:
 	

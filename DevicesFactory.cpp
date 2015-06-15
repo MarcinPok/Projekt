@@ -7,8 +7,8 @@
 DevicesFactory::DevicesFactory(void)
 {
 	this->RegisterDevice(" 'Termometr", new TemperatureSensor());
-	//this->RegisterDevice("Device", new Device());
-	cout << "utworzono skurwiala fabryke" << endl;
+	this->RegisterDevice(" 'Device", new Device());
+	cout << "Factory()" << endl;
 	
 }
 
@@ -39,7 +39,7 @@ Device * DevicesFactory::create(string type, ConnectedClient* client)
 	it = DevicesMap.find(type);
 	if (it != DevicesMap.end())
 	{
-		Device* s = it->second->create(type,client);
+		Device* s = it->second->create(client);
 		DevicesList.push_back(s);
 		return s;
 	}

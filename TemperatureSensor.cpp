@@ -3,23 +3,39 @@
 
 TemperatureSensor::TemperatureSensor()
 {
-	//this->ID = ID;
 	cout << "TemperatureSensor()" << endl;
 }
 
+TemperatureSensor::TemperatureSensor(ConnectedClient* client)
+{
+	cout << "TemperatureSensor(client)" << endl;
+	this->client = client;
+	pthread_create(&thread_id, NULL, run, (void*)this);
+}
+
+void* TemperatureSensor::run(void* arg)
+{
+	TemperatureSensor* sensor = (TemperatureSensor*)arg;
+	do
+	{
+		cout << sensor->client->getline() << endl;
+	}while(sensor->client->is_running());
+	cout<<"coœ"<<endl; // tutaj usuñ czujnik
+	return NULL;
+}
 
 TemperatureSensor::~TemperatureSensor()
 {
 	cout << "~TemperatureSensor()" << endl;
 }
 
-TemperatureSensor* TemperatureSensor::create(string type, ConnectedClient* client)
+TemperatureSensor* TemperatureSensor::create(ConnectedClient* client)
 {
-	return new TemperatureSensor();
+	return new TemperatureSensor(client);
 }
 
 /*
-string TemperatureSensor::GetMeasure()
+string TemperatureSensor::GetMeasurement()
 {
 	srand(time(NULL));
 	this -> measure = rand() % 100;
