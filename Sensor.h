@@ -4,16 +4,17 @@
 
 class ConnectedClient;
 class Device;
+class DevicesFactory;
 
 class Sensor : public Device
 {
 public:
 	Sensor();
-	Sensor(ConnectedClient* client);
+	Sensor(ConnectedClient* client,DevicesFactory* factory){};
 	virtual ~Sensor();
-	virtual Sensor* create(ConnectedClient* client)
+	virtual Sensor* create(ConnectedClient* client,DevicesFactory* factory)
 	{
-		return new Sensor();
+		return new Sensor(client,factory);
 	}
 private:
 	string type;

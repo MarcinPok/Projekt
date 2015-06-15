@@ -39,7 +39,7 @@ Device * DevicesFactory::create(string type, ConnectedClient* client)
 	it = DevicesMap.find(type);
 	if (it != DevicesMap.end())
 	{
-		Device* s = it->second->create(client);
+		Device* s = it->second->create(client,this);
 		DevicesList.push_back(s);
 		return s;
 	}
@@ -50,6 +50,23 @@ Device * DevicesFactory::create(string type, ConnectedClient* client)
 void DevicesFactory::RegisterDevice(string type, Device* device)
 {
 	DevicesMap[type]=device;
+}
+
+void DevicesFactory::deleteDevice(Device* device)
+{
+
+
+	vector <Device*>::iterator it;
+	for (it=DevicesList.begin(); it != DevicesList.end(); ++it)
+	{
+		if(*it==device)
+		{
+			DevicesList.erase(it);
+			delete device;
+			return;
+		}
+	}
+
 }
 
 

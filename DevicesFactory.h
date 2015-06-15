@@ -16,10 +16,8 @@ public:
 	~DevicesFactory();
 	void RegisterDevice(string type, Device* device);
 	Device* create(string type, ConnectedClient* client);
-	Device* selfRegister(Device* device)
-	{
-		
-	}
+	void deleteDevice(Device* device);
+
 protected:
 	map <string, Device*> DevicesMap;
 	vector <Device*> DevicesList;

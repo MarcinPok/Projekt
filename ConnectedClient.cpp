@@ -7,7 +7,6 @@ ConnectedClient::ConnectedClient(TCPServer* server, int connected_socket, uint32
     this->ip = ip;
     this->port = port;
 	this->start();
-    //pthread_create(&thread_id, NULL, run, (void*)this);
 }
 
 
@@ -38,9 +37,8 @@ string ConnectedClient::getline(bool asterisks)
         if(rxbytes == 1 && c>=32)
         {
             line += c;
-            //send(connected_socket, &c, 1, 0); //echo
         }
-		if (rxbytes == 0) { this->stop(); /*throw exception("client disconnected"); */}
+		if (rxbytes == 0) { this->stop();}
     } while (rxbytes==1 && c!='\r');
     return line;
 }

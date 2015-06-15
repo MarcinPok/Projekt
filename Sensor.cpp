@@ -9,6 +9,7 @@ Sensor::Sensor(void)
 
 Sensor::~Sensor(void)
 {
+	cout << "~Sensor()" << endl;
 }
 
 /*Device* Sensor::create(string type, ConnectedClient* client)

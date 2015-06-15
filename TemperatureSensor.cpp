@@ -6,32 +6,36 @@ TemperatureSensor::TemperatureSensor()
 	cout << "TemperatureSensor()" << endl;
 }
 
-TemperatureSensor::TemperatureSensor(ConnectedClient* client)
+TemperatureSensor::TemperatureSensor(ConnectedClient* client, DevicesFactory* factory)
 {
 	cout << "TemperatureSensor(client)" << endl;
+	this->factory = factory;
 	this->client = client;
 	pthread_create(&thread_id, NULL, run, (void*)this);
-}
-
-void* TemperatureSensor::run(void* arg)
-{
-	TemperatureSensor* sensor = (TemperatureSensor*)arg;
-	do
-	{
-		cout << sensor->client->getline() << endl;
-	}while(sensor->client->is_running());
-	cout<<"coœ"<<endl; // tutaj usuñ czujnik
-	return NULL;
 }
 
 TemperatureSensor::~TemperatureSensor()
 {
 	cout << "~TemperatureSensor()" << endl;
+	this->client->disconnect();
 }
 
-TemperatureSensor* TemperatureSensor::create(ConnectedClient* client)
+void* TemperatureSensor::run(void* arg)
 {
-	return new TemperatureSensor(client);
+	TemperatureSensor* thisSensor = (TemperatureSensor*)arg;
+	do
+	{
+		cout << thisSensor->client->getline() << endl;
+	}while(thisSensor->client->is_running());
+	thisSensor->factory->deleteDevice(thisSensor);
+	return NULL;
+}
+
+
+
+TemperatureSensor* TemperatureSensor::create(ConnectedClient* client, DevicesFactory* factory)
+{
+	return new TemperatureSensor(client,factory);
 }
 
 /*

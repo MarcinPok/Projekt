@@ -33,17 +33,11 @@ void* CentralSystem::run(void *arg)
 	return NULL;
 }
 
-void CentralSystem::newClient(ConnectedClient* client)
-	{
-		client->putline("Register");
-		string type = client->getline(false);
-		factory->create(type,client);
-	}
-
 void CentralSystem::identifyDevice(ConnectedClient * client)
 {
-	client->putline("Identify yourself");
-	string type = client->getline();
-	factory->create(type, client);
+
+		client->putline("Identify yourself\r\n");
+		string type = client->getline();
+		factory->create(type, client);
 
 }

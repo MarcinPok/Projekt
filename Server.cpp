@@ -39,7 +39,7 @@ vector<ConnectedClient*> TCPServer::listClients()
 void TCPServer::addClient(ConnectedClient * client)
 {
     clients.push_back(client);
-	system->newClient(client);
+	system->identifyDevice(client);
 }
 
 void TCPServer::removeClient(ConnectedClient * client)
@@ -72,11 +72,6 @@ void TCPServer::stop()
 bool TCPServer::is_running() 
 { 
 	return _is_running; 
-}
-
-void TCPServer::newDevice(ConnectedClient* client)
-{
-	system->identifyDevice(client);
 }
 
 void* TCPServer::run(void *arg)
@@ -122,9 +117,7 @@ void* TCPServer::run(void *arg)
                 << remote.sin_addr.s_addr
                 << " : " << remote.sin_port
                 << endl;
-			ConnectedClient * newClient;
-			newClient = new ConnectedClient(server, client_socket, remote.sin_addr.s_addr, remote.sin_port);
-			server->addClient(newClient);
+			server->addClient(new ConnectedClient(server, client_socket, remote.sin_addr.s_addr, remote.sin_port));
         }
         else
         {
