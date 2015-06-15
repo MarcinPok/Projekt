@@ -2,12 +2,13 @@
 
 Device::Device()
 {
+	cout<<"Device()"<<endl;
 }
 
-Device::Device(ConnectedClient* client)
+Device::Device(ConnectedClient* client, DevicesFactory* factory)
 {
 	this->client = client;
-	cout<<"Device()"<<endl;
+	cout<<"Device(client)"<<endl;
 
 }
 

@@ -10,6 +10,7 @@ public:
 	DevicesFactory * factory;
 	CentralSystem(void);
 	virtual ~CentralSystem(void);
+	//virtual notify(string msg, Device* device);
 	void start();
 	static void* run(void *);
 	bool is_running() {return _is_running;}

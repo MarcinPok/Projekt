@@ -1,20 +1,21 @@
 #pragma once
-//#include "Server.h"
 #include "ConnectedClient.h"
+#include "DevicesFactory.h"
 
+class DevicesFactory;
 class ConnectedClient;
 
 class Device
 {
 public:
 	Device();
-	Device(ConnectedClient* client);
+	Device(ConnectedClient* client, DevicesFactory* factory);
 	virtual ~Device(void);
-	virtual Device* create(string type, ConnectedClient* client)
+	virtual Device* create(ConnectedClient* client,DevicesFactory* factory)
 	{
-		return new Device(client);
+		return new Device(client,factory);
 	}
-private:
+protected:
 	ConnectedClient* client;
 };
 

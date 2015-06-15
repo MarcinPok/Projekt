@@ -26,7 +26,6 @@ protected:
     virtual void addClient(ConnectedClient * client);
     virtual void removeClient(ConnectedClient * client);    
 	static void* run(void *); 
-	virtual void newDevice(ConnectedClient * client);
 
 private:
     int my_socket;

@@ -35,8 +35,9 @@ void* CentralSystem::run(void *arg)
 
 void CentralSystem::identifyDevice(ConnectedClient * client)
 {
-	client->putline("Identify yourself");
-	string type = client->getline();
-	factory->create(type, client);
+
+		client->putline("Identify yourself\r\n");
+		string type = client->getline();
+		factory->create(type, client);
 
 }
