@@ -1,13 +1,14 @@
 #pragma once
 #include "DevicesFactory.h"
-#include "TemperatureSensor.h"
 
 
 
-DevicesFactory::DevicesFactory(void)
+
+DevicesFactory::DevicesFactory(CentralSystem* system)
 {
 	this->RegisterDevice(" 'Termometr", new TemperatureSensor());
 	this->RegisterDevice(" 'Device", new Device());
+	this->system=system;
 	cout << "Factory()" << endl;
 	
 }
@@ -39,7 +40,7 @@ Device * DevicesFactory::create(string type, ConnectedClient* client)
 	it = DevicesMap.find(type);
 	if (it != DevicesMap.end())
 	{
-		Device* s = it->second->create(client,this);
+		Device* s = it->second->create(client,this, system);
 		DevicesList.push_back(s);
 		return s;
 	}

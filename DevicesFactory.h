@@ -3,6 +3,9 @@
 #include "Device.h"
 #include <map>
 #include "Server.h"
+#include "CentralSystem.h"
+
+
 
 class ConnectedClient;
 class Device;
@@ -12,7 +15,8 @@ using namespace std;
 class DevicesFactory
 {
 public:
-	DevicesFactory();
+	friend class CentralSystem;
+	DevicesFactory(CentralSystem* system);
 	~DevicesFactory();
 	void RegisterDevice(string type, Device* device);
 	Device* create(string type, ConnectedClient* client);
@@ -21,5 +25,6 @@ public:
 protected:
 	map <string, Device*> DevicesMap;
 	vector <Device*> DevicesList;
+	CentralSystem* system;
 
 };
