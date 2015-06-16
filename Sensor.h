@@ -1,5 +1,5 @@
 #pragma once
-#include "common.h"
+
 #include "Device.h"
 
 class ConnectedClient;

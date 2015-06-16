@@ -1,9 +1,10 @@
 #pragma once
 #include "common.h"
-#include "Device.h"
+
 #include <map>
 #include "Server.h"
 #include "CentralSystem.h"
+#include "TemperatureSensor.h"
 
 
 

@@ -1,4 +1,5 @@
 #pragma once
+#include "common.h"
 #include "ConnectedClient.h"
 #include "DevicesFactory.h"
 #include "CentralSystem.h"

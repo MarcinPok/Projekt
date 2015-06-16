@@ -44,7 +44,7 @@ void CentralSystem::identifyDevice(ConnectedClient * client)
 
 
 void CentralSystem::notify(string msg, Device* device)
-{
+{/*
 	//map <string, Device*>::iterator it;
 	//for (it = factory->DevicesMap.begin(); it != factory->DevicesMap.end(); ++it )
    // if (it->second == device) 
@@ -53,12 +53,12 @@ void CentralSystem::notify(string msg, Device* device)
 	vector <Device*>::iterator it;
 		for (it=factory->DevicesList.begin(); it != factory->DevicesList.end(); ++it)
 			cout << ((TemperatureSensor*)(*it))->myType() << endl;
-
+*/
 }
 
 void CentralSystem::updateDevices(string msg, string type)
 {
-
+/*
 	if (type == " 'Termometr")
 	{
 		vector <Device*>::iterator it;
@@ -66,6 +66,6 @@ void CentralSystem::updateDevices(string msg, string type)
 			if ( (*it)->myType() == " 'Display") string a = ((TemperatureSensor*)(*it))->myType();
 
 	}
-				
+		*/		
 	 
 }

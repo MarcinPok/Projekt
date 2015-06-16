@@ -2,9 +2,7 @@
 #include "DevicesFactory.h"
 #include "common.h"
 #include "ConnectedClient.h"
-#include "Device.h"
-#include <vector>
-#include "TemperatureSensor.h"
+
 
 class ConnectedClient;
 class DevicesFactory;
