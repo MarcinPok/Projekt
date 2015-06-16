@@ -11,6 +11,7 @@ Common common;
 	#endif
 }
 
+
 Common::Common()
 {
 	#ifdef WIN32
