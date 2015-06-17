@@ -1,14 +1,15 @@
 #pragma once
 #include "DevicesFactory.h"
 #include "TemperatureSensor.h"
+#include "TxtDisplay.h"
 
 
-
-DevicesFactory::DevicesFactory(void)
+DevicesFactory::DevicesFactory(CentralSystem* system)
 {
-	this->RegisterDevice(" 'Termometr", new TemperatureSensor());
-	this->RegisterDevice(" 'Device", new Device());
+	this->RegisterDevice(" 'Termometr", new TemperatureSensor);
+	this->RegisterDevice(" 'TxtDisplay", new TxtDisplay);
 	cout << "Factory()" << endl;
+	this->system=system;
 	
 }
 
@@ -17,18 +18,18 @@ DevicesFactory::~DevicesFactory(void)
 {
 	
 	map <string, Device*>::iterator it;
-	for(it = DevicesMap.begin(); it != DevicesMap.end(); ++it)
+	for(it = devicesMap.begin(); it != devicesMap.end(); ++it)
 	{
 		delete (*it).second;
 	}
-	DevicesMap.clear();
+	devicesMap.clear();
 
-	vector <Device*> :: iterator it2;
-	for(it2 = DevicesList.begin(); it2 != DevicesList.end(); ++it2)
+	map <Device*, string>::iterator it2;
+	for(it2 = devicesList.begin(); it2 != devicesList.end(); ++it2)
 	{
-		delete *it2;
+		delete (*it2).first;
 	}
-	DevicesList.clear();
+	devicesList.clear();
 
 	cout << "~Factory"<< endl;
 }
@@ -36,11 +37,11 @@ DevicesFactory::~DevicesFactory(void)
 Device * DevicesFactory::create(string type, ConnectedClient* client)
 {
 	map <string, Device*>::iterator it;
-	it = DevicesMap.find(type);
-	if (it != DevicesMap.end())
+	it = devicesMap.find(type);
+	if (it != devicesMap.end())
 	{
-		Device* s = it->second->create(client,this);
-		DevicesList.push_back(s);
+		Device* s = it->second->create(client,this, system);
+		devicesList[s]= type;
 		return s;
 	}
 	else
@@ -49,24 +50,18 @@ Device * DevicesFactory::create(string type, ConnectedClient* client)
 
 void DevicesFactory::RegisterDevice(string type, Device* device)
 {
-	DevicesMap[type]=device;
+	devicesMap[type]=device;
 }
 
 void DevicesFactory::deleteDevice(Device* device)
 {
 
+	map <Device*, string>::iterator it;
+	it = devicesList.find(device);
 
-	vector <Device*>::iterator it;
-	for (it=DevicesList.begin(); it != DevicesList.end(); ++it)
-	{
-		if(*it==device)
-		{
-			DevicesList.erase(it);
-			delete device;
-			return;
-		}
-	}
+	if (it != devicesList.end())
+		devicesList.erase(device);
+	delete device;
 
 }
-
 

@@ -2,9 +2,10 @@
 
 
 
+
 CentralSystem::CentralSystem(void)
 {
-	factory = new DevicesFactory;
+	factory = new DevicesFactory(this);
 
 }
 
@@ -35,9 +36,26 @@ void* CentralSystem::run(void *arg)
 
 void CentralSystem::identifyDevice(ConnectedClient * client)
 {
+	client->putline("Identify yourself\r\n");
+	string type = client->getline();
+	factory->create(type, client);
 
-		client->putline("Identify yourself\r\n");
-		string type = client->getline();
-		factory->create(type, client);
+}
 
+
+void CentralSystem::notify(string msg, Device* device)
+{
+	map <Device*, string>::iterator it;
+	string type;
+	it=factory->devicesList.find(device);
+	if( it->second == " 'Termometr")
+	{
+		for(it = factory->devicesList.begin(); it != factory->devicesList.end(); ++it)
+		{
+			if( it->second == " 'TxtDisplay") (*it).first->exec(msg);
+		}
+	}
+
+
+	//cout << msg <<endl;
 }

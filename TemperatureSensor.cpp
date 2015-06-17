@@ -6,8 +6,9 @@ TemperatureSensor::TemperatureSensor()
 	cout << "TemperatureSensor()" << endl;
 }
 
-TemperatureSensor::TemperatureSensor(ConnectedClient* client, DevicesFactory* factory)
+TemperatureSensor::TemperatureSensor(ConnectedClient* client, DevicesFactory* factory, CentralSystem* system)
 {
+	this->system = system;
 	cout << "TemperatureSensor(client)" << endl;
 	this->factory = factory;
 	this->client = client;
@@ -23,19 +24,21 @@ TemperatureSensor::~TemperatureSensor()
 void* TemperatureSensor::run(void* arg)
 {
 	TemperatureSensor* thisSensor = (TemperatureSensor*)arg;
-	do
+	while(thisSensor->client->is_running())
 	{
-		cout << thisSensor->client->getline() << endl;
-	}while(thisSensor->client->is_running());
+		string data_in = thisSensor->client->getline();
+		if(thisSensor->client->is_running()) thisSensor->system->notify("Temperature: " + data_in, thisSensor);
+	}
+
 	thisSensor->factory->deleteDevice(thisSensor);
 	return NULL;
 }
 
 
 
-TemperatureSensor* TemperatureSensor::create(ConnectedClient* client, DevicesFactory* factory)
+TemperatureSensor* TemperatureSensor::create(ConnectedClient* client, DevicesFactory* factory, CentralSystem* system )
 {
-	return new TemperatureSensor(client,factory);
+	return new TemperatureSensor(client,factory,system);
 }
 
 /*
