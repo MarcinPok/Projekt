@@ -1,10 +1,11 @@
 #pragma once
 #include "device.h"
-class Display :
-	public Device
+
+class Display : public Device
 {
 public:
-	Display(void);
-	virtual ~Display(void);
+	Display(void){cout<<"Display()"<<endl;};
+	virtual ~Display(void){cout<<"~Display()"<<endl;};
+	void exec(string cmd);
 };
 

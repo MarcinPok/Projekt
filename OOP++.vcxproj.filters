@@ -86,5 +86,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram11.cd" />
+    <None Include="ClassDiagram21.cd" />
   </ItemGroup>
 </Project>

@@ -3,12 +3,11 @@
 Device::Device()
 {
 	cout<<"Device()"<<endl;
+	client = NULL;
 }
 
 Device::Device(ConnectedClient* client, DevicesFactory* factory, CentralSystem* system)
 {
-	/*this->client = client;
-	cout<<"Device(client)"<<endl;*/
 
 }
 

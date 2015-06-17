@@ -19,7 +19,6 @@ TCPServer::~TCPServer()
 
 ConnectedClient* TCPServer::findClient(string user)
 {
-	//vector<ConnectedClient*>::iterator it;
 	for(auto it = clients.begin(); it != clients.end(); ++it)
 	{
 
@@ -44,7 +43,6 @@ void TCPServer::addClient(ConnectedClient * client)
 
 void TCPServer::removeClient(ConnectedClient * client)
 {
-    //vector<ConnectedClient*>::iterator it;
 	for(auto it = clients.begin(); it != clients.end(); ++it)
 	{
 		if(*it == client)

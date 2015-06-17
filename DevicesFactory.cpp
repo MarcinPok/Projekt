@@ -6,13 +6,12 @@
 
 DevicesFactory::DevicesFactory(CentralSystem* system)
 {
-	this->RegisterDevice(" 'Termometr", new TemperatureSensor);
+	this->RegisterDevice(" 'TempSensor", new TemperatureSensor);
 	this->RegisterDevice(" 'TxtDisplay", new TxtDisplay);
 	cout << "Factory()" << endl;
 	this->system=system;
 	
 }
-
 
 DevicesFactory::~DevicesFactory(void)
 {

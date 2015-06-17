@@ -3,12 +3,9 @@
 #include "Device.h"
 #include <map>
 #include "Server.h"
-//#include "CentralSystem.h"
 
 class ConnectedClient;
 class Device;
-
-using namespace std;
 
 class DevicesFactory
 {
@@ -17,11 +14,11 @@ public:
 	DevicesFactory(CentralSystem* system);
 	DevicesFactory();
 	~DevicesFactory();
-	void RegisterDevice(string type, Device* device);
-	Device* create(string type, ConnectedClient* client);
-	void deleteDevice(Device* device);
+	virtual void RegisterDevice(string type, Device* device);
+	virtual void deleteDevice(Device* device);
 
-protected:
+private:
+	virtual Device* create(string type, ConnectedClient* client);
 	map <string, Device*> devicesMap;
 	map <Device*, string> devicesList;
 	CentralSystem* system;

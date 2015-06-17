@@ -18,7 +18,8 @@ TxtDisplay::TxtDisplay(ConnectedClient* client, DevicesFactory* factory, Central
 TxtDisplay::~TxtDisplay(void)
 {
 	cout << "~TxtDisplay()" << endl;
-	this->client->disconnect();
+	if(this->client != NULL)
+		this->client->disconnect();
 }
 
 void* TxtDisplay::run(void* arg)
@@ -37,7 +38,7 @@ TxtDisplay* TxtDisplay::create(ConnectedClient* client, DevicesFactory* factory,
 	return new TxtDisplay(client,factory,system);
 }
 
-void TxtDisplay::exec(string cmd)
+void Display::exec(string cmd)
 {
 	client->putline(cmd);
 }
